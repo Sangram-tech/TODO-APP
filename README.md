@@ -35,3 +35,23 @@ Add, complete, delete tasks with real-time date & time display. No frameworks or
 
 ## 📁 Project Structure
 
+
+---
+
+## 🛠️ Built With
+
+- **HTML5**
+- **CSS3**
+- **JavaScript (ES6)**
+
+---
+
+## 📢 Hosting Your Own Version
+
+You can host this app for free using **GitHub Pages**:
+
+1. Create a new repo (e.g., `todo-app`) on GitHub.
+2. Upload `index.html` and `README.md` to the repo.
+3. Go to:
+
+
