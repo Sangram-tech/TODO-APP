@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Stylish To-Do List</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        min-height: 100vh;
+      }
+
+      .container {
+        background: #fff;
+        margin-top: 60px;
+        padding: 30px 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 450px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 28px;
+      }
+
+      .input-group {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 12px 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px 0 0 8px;
+        font-size: 16px;
+        transition: border 0.3s;
+      }
+
+      input[type="text"]:focus {
+        border-color: #4facfe;
+        outline: none;
+      }
+
+      button.add-btn {
+        padding: 12px 18px;
+        background: #4facfe;
+        color: white;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button.add-btn:hover {
+        background: #00f2fe;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        background: #f9f9f9;
+        padding: 14px 16px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s;
+      }
+
+      li:hover {
+        transform: scale(1.02);
+      }
+
+      .task-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .task-text {
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .task-text:hover {
+        color: #0077ff;
+      }
+
+      .timestamp {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+      }
+
+      li.completed .task-text {
+        text-decoration: line-through;
+        color: gray;
+      }
+
+      .delete-btn {
+        background: transparent;
+        border: none;
+        font-size: 18px;
+        color: #ff4d4d;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .delete-btn:hover {
+        color: #ff1a1a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My To-Do List</h1>
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Add a new task..." />
+        <button class="add-btn" onclick="addTask()">Add</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      function addTask() {
+        const input = document.getElementById("taskInput");
+        const taskText = input.value.trim();
+
+        if (taskText === "") {
+          alert("Please enter a task.");
+          return;
+        }
+
+        const li = document.createElement("li");
+        const dateTime = new Date().toLocaleString();
+
+        li.innerHTML = `
+        <div class="task-header">
+          <span class="task-text" onclick="toggleComplete(this)">${taskText}</span>
+          <button class="delete-btn" onclick="removeTask(this)" title="Delete Task">🗑️</button>
+        </div>
+        <div class="timestamp">Added on: ${dateTime}</div>
+      `;
+
+        document.getElementById("taskList").appendChild(li);
+        input.value = "";
+      }
+
+      function removeTask(button) {
+        button.closest("li").remove();
+      }
+
+      function toggleComplete(span) {
+        span.closest("li").classList.toggle("completed");
+      }
+    </script>
+  </body>
+</html>
